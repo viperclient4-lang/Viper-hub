@@ -1,57 +1,54 @@
-local RedzLib = loadstring(game:HttpGet("https://raw.githubusercontent.com/REDZHUB/RedzLibV5/main/Source.lua"))()
+local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
--- Criando a Janela (Sem Key agora)
-local Window = RedzLib:MakeWindow({
-  Name = "🐍 Viper Client | Free",
-  Subtitle = "por guizin",
-  SaveConfig = true
+local Window = Rayfield:CreateWindow({
+   Name = "🐍 Viper Client | Original",
+   LoadingTitle = "Carregando Viper...",
+   LoadingSubtitle = "por guizin",
+   ConfigurationSaving = {
+      Enabled = false
+   },
+   KeySystem = false -- Removido para teste
 })
 
--- ABA PRINCIPAL
-Window:AddTab("Principal")
+local MainTab = Window:CreateTab("Principal", 4483362458)
 
-Window:AddSection("Atributos do Jogador")
+MainTab:CreateSection("Atributos")
 
-Window:AddSlider({
-  Name = "Velocidade (Speed)",
-  Min = 16,
-  Max = 250,
-  Default = 16,
-  Callback = function(Value)
-     if game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character:FindFirstChild("Humanoid") then
-        game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Value
-     end
-  end
+MainTab:CreateSlider({
+   Name = "Velocidade (Speed)",
+   Range = {16, 300},
+   Increment = 1,
+   Suffix = "Studs",
+   CurrentValue = 16,
+   Flag = "Slider1",
+   Callback = function(Value)
+      if game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character:FindFirstChild("Humanoid") then
+         game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Value
+      end
+   end,
 })
 
-Window:AddSlider({
-  Name = "Pulo (Jump)",
-  Min = 50,
-  Max = 250,
-  Default = 50,
-  Callback = function(Value)
-     if game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character:FindFirstChild("Humanoid") then
-        game.Players.LocalPlayer.Character.Humanoid.UseJumpPower = true
-        game.Players.LocalPlayer.Character.Humanoid.JumpPower = Value
-     end
-  end
+MainTab:CreateSlider({
+   Name = "Pulo (Jump Power)",
+   Range = {50, 300},
+   Increment = 1,
+   Suffix = "Power",
+   CurrentValue = 50,
+   Flag = "Slider2",
+   Callback = function(Value)
+      if game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character:FindFirstChild("Humanoid") then
+         game.Players.LocalPlayer.Character.Humanoid.UseJumpPower = true
+         game.Players.LocalPlayer.Character.Humanoid.JumpPower = Value
+      end
+   end,
 })
 
--- ABA DE CRÉDITOS
-Window:AddTab("Informações")
-
-Window:AddSection("Desenvolvedor")
-Window:AddLabel("Criado por: guizin")
-
-Window:AddSection("Versão")
-Window:AddLabel("Viper v1.0 - Sem Key")
-  Name = "Pulo (Jump)",
-  Min = 50,
-  Max = 250,
-  Default = 50,
-  Callback = function(Value)
-     if game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character:FindFirstChild("Humanoid") then
-        game.Players.LocalPlayer.Character.Humanoid.UseJumpPower = true
+Rayfield:Notify({
+   Title = "Viper Client",
+   Content = "Script executado com sucesso!",
+   Duration = 5,
+   Image = 4483362458,
+})
         game.Players.LocalPlayer.Character.Humanoid.JumpPower = Value
      end
   end
